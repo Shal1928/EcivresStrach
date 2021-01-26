@@ -1,47 +1,34 @@
-# from pyquibase.pyquibase import Pyquibase
-import sqlite3
-from sqlite3 import Error
+import tkinter as tk
+from tkinter import ttk
+from package1.db import try_exec, get_conn_db
 
 
-def init_leadtime_db():
-    """ init leadtime db """
-    conn = None
-    try:
-        conn = sqlite3.connect('EcivresStrach/leadtime.sqlite')
-        print(sqlite3.version)
+def view():
+    conn = get_conn_db()
 
-        try_exec(conn, '''CREATE TABLE KAS(TITLE TEXT)''')
-        try_exec(conn, '''CREATE TABLE TSHIRT(TITLE TEXT)''')
-        try_exec(conn, '''CREATE TABLE WORK_TYPE(TITLE TEXT)''')
-        try_exec(conn, '''CREATE TABLE RWI
-            (TITLE TEXT, COMMENT TEXT, IS_PLAN INTEGER, WORK_TYPE INTEGER, TSHIRT INTEGER)''')
-        try_exec(conn, '''CREATE TABLE WORK_RECORD
-                    (TITLE TEXT, COMMENT TEXT, START TEXT, FINISH TEXT, KAS INTEGER, RWI INTEGER)''')
+    cur1 = try_exec(conn, '''SELECT ROWID, TITLE FROM main.WORK_TYPE''')
+    rows = cur1.fetchall()
+    for row in rows:
+        print(row)
+        tree.insert("", tk.END, values=row)
 
-        conn.commit()
-    except Error as e:
-        print(e)
-    finally:
-        if conn:
-            conn.close()
+    conn.close()
 
 
-def try_exec(conn,sql):
-    """ Trying executing sql statement """
-    try:
-        c = conn.cursor()
+window = tk.Tk()
+window.title("Add Work Record")
 
-        c.execute(sql)
+tree = ttk.Treeview(window, column=("c1", "c2"), show='headings')
+tree.column("#1", anchor=tk.CENTER)
+tree.heading("#1", text="rowid")
+tree.column("#2", anchor=tk.CENTER)
+tree.heading("#2", text="TITLE")
+tree.pack()
 
-        conn.commit()
-    except Error as e:
-        print(e)
+button1 = tk.Button(text="Display data", command=view)
+button1.pack(pady=10)
 
+window.mainloop()
 
-# init_leadtime_db()
-
-# if __name__ == '__main__':
-#     pyquibase = Pyquibase.sqlite('test.sqlite', 'sqllite-changelog.sql')
-#     pyquibase.update()
 
 
