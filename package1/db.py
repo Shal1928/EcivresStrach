@@ -23,7 +23,7 @@ def init_leadtime_db():
         try_exec(conn, '''CREATE TABLE TSHIRT(TITLE TEXT)''', True)
         try_exec(conn, '''CREATE TABLE WORK_TYPE(TITLE TEXT)''', True)
         try_exec(conn, '''CREATE TABLE RWI
-            (TITLE TEXT, COMMENT TEXT, IS_PLAN INTEGER, WORK_TYPE INTEGER, TSHIRT INTEGER)''', True)
+            (TITLE TEXT, COMMENT TEXT, IS_PLAN INTEGER, WORK_TYPE INTEGER, TSHIRT INTEGER, ID TEXT)''', True)
         try_exec(conn, '''CREATE TABLE WORK_RECORD
                     (TITLE TEXT, COMMENT TEXT, START TEXT, FINISH TEXT, KAS INTEGER, RWI INTEGER)''', True)
 
