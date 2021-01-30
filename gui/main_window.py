@@ -1,30 +1,29 @@
 import tkinter as tk
 from tkinter import ttk
 
-from gui.commands import get_rwi_fields
+from gui.commands import get_rwi_widgets
 
 
 class MainWindow(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Add RWI")
-        fields = get_rwi_fields()
-        labels = [tk.Label(self, text=f[0]) for f in fields.values()]
-        entries = [tk.Checkbutton(self) if f[1] == 'BOOL' else tk.Entry(self, width=f[2]) for f in fields.values()]
-        self.widgets = list(zip(labels, entries))
-        self.submit = tk.Button(self, text="Добавить",
+        # fields = ["План?", "Тип", "Рамзер", "Заголовок", "Комментарий", "Id"]
+        # labels = [tk.Label(self, text=f) for f in fields]
+        # entries = [tk.Entry(self) for _ in fields]
+        # self.widgets = list(zip(labels, entries))
+        self.submit = tk.Button(self, text="Распечатать",
                                 command=self.print_info)
 
-        for i, (label, entry) in enumerate(self.widgets):
-            label.grid(row=0, column=i, padx=10, sticky=tk.W)
-            entry.grid(row=1, column=i, padx=10, pady=5)
-        self.submit.grid(row=3, column=len(fields)-1, sticky=tk.E,
-                         padx=10, pady=10)
+        # for i, (label, entry) in enumerate(self.widgets):
+        #     label.grid(row=i, column=0, padx=10, sticky=tk.W)
+        #     entry.grid(row=i, column=1, padx=10, pady=5)
+        get_rwi_widgets(self)
+        self.submit.grid(row=3, column=3, sticky=tk.NSEW, padx=10, pady=10)
 
     def print_info(self):
         for label, entry in self.widgets:
             print("{} = {}".format(label.cget("text"), entry.get()))
-            entry.delete(0, tk.END)
 
 
 # window = tk.Tk()
