@@ -25,7 +25,7 @@ def try_exec(conn, sql, is_commit=False):
 
 
 def init_leadtime_db():
-    """ init leadtime db """
+    """ init leadtime data """
     conn = None
     try:
         conn = get_conn_db()

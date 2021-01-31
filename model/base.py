@@ -5,10 +5,6 @@ class Base:
         self.rowid = rowid
         self.test = 'test'
 
-    @property
-    def rowid(self):
-        return self.rowid
-
 
 class HasComment(Base):
 

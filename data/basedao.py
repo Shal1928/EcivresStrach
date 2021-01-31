@@ -1,4 +1,4 @@
-from db.db import get_conn_db, try_exec
+from data.db import get_conn_db, try_exec
 
 
 class BaseDao:

@@ -1,11 +1,13 @@
 import tkinter as tk
 from gui.commands import get_rwi_widgets
+from model.tkmodel import TkRWI
 
 
 class MainWindow(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Add RWI")
+        self.rwi = TkRWI()
         get_rwi_widgets(self)
         tk.Button(self,
                   text="Добавить RWI",

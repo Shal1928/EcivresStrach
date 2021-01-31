@@ -1,8 +1,7 @@
 import tkinter as tk
 
-from db.rwidao import WorkTypeDao, TShirtDao
+from data.rwidao import WorkTypeDao, TShirtDao
 from gui.custom.advcombobox import Advcombobox
-from model.rwi import WorkType, TShirt
 
 
 def get_frame(m, t, entry_type, s, data):

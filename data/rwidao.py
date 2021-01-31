@@ -1,4 +1,4 @@
-from db.basedao import BaseDao, PersistsDao
+from data.basedao import BaseDao, PersistsDao
 
 
 class RwiDao(PersistsDao):
@@ -6,7 +6,8 @@ class RwiDao(PersistsDao):
     def __init__(self):
         super().__init__('RWI')
 
-
+    # var = tk.StringVar()
+    # var.trace_add('write', callback)
     # @property
     # def work_type(self):
     #     return f"{self.first_name} {self.last_name}"
@@ -15,6 +16,7 @@ class RwiDao(PersistsDao):
     # def work_type(self, name):
     #     print("Setter for the name")
     #     self.first_name, self.last_name = name.split()
+
 
 class WorkTypeDao(BaseDao):
 
