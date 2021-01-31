@@ -3,7 +3,7 @@ from tkinter import ttk
 
 class Advcombobox(ttk.Combobox):
 
-    def __init__(self, master=None, cnf={}, **options):
+    def __init__(self, master=None, **options):
         self.dict = None
 
         if 'values' in options:
