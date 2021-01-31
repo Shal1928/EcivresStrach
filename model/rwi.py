@@ -1,4 +1,4 @@
-from model.base import HasComment
+from model.base import Base, HasComment
 
 
 class RWI(HasComment):
@@ -17,3 +17,15 @@ class RWI(HasComment):
     # def work_type(self, name):
     #     print("Setter for the name")
     #     self.first_name, self.last_name = name.split()
+
+
+class WorkType(Base):
+
+    def __init__(self, title, rowid=None):
+        self.__init__(title, rowid)
+
+
+class TShirt(Base):
+
+    def __init__(self, title, rowid=None):
+        self.__init__(title, rowid)
