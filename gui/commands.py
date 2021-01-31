@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 
 from gui.custom.advcombobox import Advcombobox
-from package1.db import get_conn_db, try_exec
+from data.db import get_conn_db, try_exec
 
 
 # def get_widget(form)
