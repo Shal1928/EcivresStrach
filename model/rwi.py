@@ -1,11 +1,10 @@
-from model.base import Base
+from model.base import HasComment
 
 
-class RWI(Base):
+class RWI(HasComment):
 
     def __init__(self, title, comment, is_plan, work_type, tshirt, rowid=None):
-        self.__init__(title, rowid)
-        self.comment = comment
+        self.__init__(title, comment, rowid)
         self.is_plan = is_plan
         self.work_type = work_type
         self.tshirt = tshirt
