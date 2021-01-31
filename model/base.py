@@ -13,5 +13,5 @@ class Base:
 class HasComment(Base):
 
     def __init__(self, title, comment, rowid=None):
-        self.__init__(title, rowid)
+        super().__init__(title, rowid)
         self.comment = comment

@@ -4,7 +4,7 @@ from model.base import Base, HasComment
 class RWI(HasComment):
 
     def __init__(self, title, comment, is_plan, work_type, tshirt, rowid=None):
-        self.__init__(title, comment, rowid)
+        super().__init__(title, comment, rowid)
         self.is_plan = is_plan
         self.work_type = work_type
         self.tshirt = tshirt
@@ -22,10 +22,10 @@ class RWI(HasComment):
 class WorkType(Base):
 
     def __init__(self, title, rowid=None):
-        self.__init__(title, rowid)
+        super().__init__(title, rowid)
 
 
 class TShirt(Base):
 
     def __init__(self, title, rowid=None):
-        self.__init__(title, rowid)
+        super().__init__(title, rowid)
