@@ -1,11 +1,13 @@
-from sqlalchemy import Column, DateTime, String, Integer, ForeignKey, func
-from sqlalchemy.orm import relationship, backref
+import os
+import sys
+
+from sqlalchemy import Column, String, Integer, ForeignKey, Boolean
+from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 
-# engine = create_engine('sqlite:///orm_in_detail.sqlite')
-engine = create_engine('sqlite:///..\\leadtime.sqlite')
+root_path = os.path.dirname(sys.modules['__main__'].__file__)
+engine = create_engine(f'sqlite:///{root_path}\\leadtime.sqlite')
 Base = declarative_base()
 
 
@@ -15,41 +17,22 @@ class WorkType(Base):
     title = Column(String)
 
 
-# class Employee(Base):
-#     __tablename__ = 'employee'
-#     id = Column(Integer, primary_key=True)
-#     name = Column(String)
-#     # Use default=func.now() to set the default hiring time
-#     # of an Employee to be the current time when an
-#     # Employee record was created
-#     hired_on = Column(DateTime, default=func.now())
-#     department_id = Column(Integer, ForeignKey('department.id'))
-#     # Use cascade='delete,all' to propagate the deletion of a Department onto its Employees
-#     department = relationship(
-#         Department,
-#         backref=backref('employees',
-#                         uselist=True,
-#                         cascade='delete,all'))
-
-session = sessionmaker()
-session.configure(bind=engine)
-Base.metadata.create_all(engine)
-
-# >>> d = Department(name="IT")
-# >>> emp1 = Employee(name="John", department=d)
-s = session()
-# >>> s.add(d)
-# >>> s.add(emp1)
-# >>> s.commit()
-# >>> s.delete(d)  # Deleting the department also deletes all of its employees.
-# >>> s.commit()
-
-# for wt in s.query(WorkType).all():
-#     print(wt.__dict__)
+class TShirt(Base):
+    __tablename__ = 'TSHIRT'
+    rowid = Column(Integer, primary_key=True)
+    title = Column(String)
 
 
-work_types = s.query(WorkType).all()
-
-print('### All Work Types:')
-for wt in work_types:
-    print(f'{wt.rowid} = {wt.title}')
+class RWI(Base):
+    __tablename__ = 'RWI'
+    rowid = Column(Integer, primary_key=True)
+    title = Column(String)
+    comment = Column(String)
+    is_plan = Column(Boolean, default=False)
+    work_type = Column(Integer, ForeignKey('WORK_TYPE.rowid'))
+    work_type_obj = relationship(WorkType)
+    tshirt = Column(Integer, ForeignKey('TSHIRT.rowid'))
+    tshirt_obj = relationship(TShirt)
+    id = Column(String)
+    master = Column(Integer, ForeignKey('RWI.rowid'))
+    master_obj = relationship(__tablename__)
