@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from data.rwidao import WorkTypeDao, TShirtDao
+from data.ds import WorkTypeDS, TShirtDS
 from gui.custom.advcombobox import Advcombobox
 
 
@@ -16,19 +16,17 @@ def get_frame(m, t, entry_type, s, data):
 
 
 def get_rwi_widgets(m):
-    work_type = WorkTypeDao()
-    tshirt = TShirtDao()
-    wt = work_type.table
-    ts = tshirt.table
+    work_type = WorkTypeDS()
+    tshirt = TShirtDS()
     return {
         'IS_PLAN': get_frame(m, 'Плановая?', 'check', tk.TOP, []).grid(row=0, column=0, padx=10, pady=5, sticky=tk.EW),
-        wt: get_frame(
-            m, 'Тип работы', 'combo', tk.TOP, work_type.readall()
+        work_type.table: get_frame(
+            m, 'Тип работы', 'combo', tk.TOP, {row.rowid: row.title for row in work_type.all()}
         ).grid(
             row=0, column=1, padx=10, pady=5, sticky=tk.EW
         ),
-        ts: get_frame(
-            m, 'Размер', 'combo', tk.TOP, tshirt.readall()
+        tshirt.table: get_frame(
+            m, 'Размер', 'combo', tk.TOP, {row.rowid: row.title for row in tshirt.all()}
         ).grid(
             row=0, column=2, padx=10, pady=5, sticky=tk.EW
         ),

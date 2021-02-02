@@ -7,6 +7,9 @@ print('### All Work Types:')
 for wt in work_types:
     print(f'{wt.rowid} = ')
 
+wt_dic = {wt.rowid: wt.title for wt in work_types}
+print(wt_dic)
+
 rwi = RWI()
 rwi.title = 'rwi_test_1'
 rwi.comment = 'comment_1'
