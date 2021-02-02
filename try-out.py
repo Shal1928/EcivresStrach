@@ -1,15 +1,8 @@
-from sqlalchemy.orm import sessionmaker
+from data.dao import Session, RWI, WorkType
 
-from data.dao import RWI, WorkType, Base, engine
-
-session = sessionmaker()
-session.configure(bind=engine)
-Base.metadata.create_all(engine)
-
-s = session()
+s = Session()
 
 work_types = s.query(WorkType).all()
-
 print('### All Work Types:')
 for wt in work_types:
     print(f'{wt.rowid} = ')
