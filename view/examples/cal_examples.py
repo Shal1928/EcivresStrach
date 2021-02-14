@@ -40,7 +40,12 @@ def example3():
     cal = DateEntry(top, width=12, background='darkblue',
                     foreground='white', borderwidth=2, year=2021,
                     locale='ru_RU', date_pattern='dd.MM.YYYY')
+    # cal.bind("<<DateEntrySelected>>", print_sel)
     cal.pack(padx=10, pady=10)
+
+
+# def print_sel(e):
+#     print(cal.get_date())
 
 
 root = tk.Tk()

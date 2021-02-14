@@ -1,17 +1,6 @@
-import os
-import sys
-
 from sqlalchemy import Column, String, Integer, ForeignKey, Boolean
 from sqlalchemy.orm import relationship, sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine
-
-root_path = os.path.dirname(sys.modules['__main__'].__file__)
-engine = create_engine(f'sqlite:///{root_path}\\leadtime.sqlite')
-Session = sessionmaker(bind=engine)
-
-Base = declarative_base()
-Base.metadata.create_all(engine)
+from store import Base
 
 
 class WorkType(Base):

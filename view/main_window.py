@@ -1,5 +1,4 @@
 import tkinter as tk
-from gui.commands import get_rwi_widgets
 
 
 class MainWindow(tk.Tk):
@@ -7,7 +6,7 @@ class MainWindow(tk.Tk):
         super().__init__()
         self.title("Add RWI")
         # self.rwi = TkRWI()
-        get_rwi_widgets(self)
+        # get_rwi_widgets(self)
         tk.Button(self,
                   text="Добавить RWI",
                   command=self.add_rwi

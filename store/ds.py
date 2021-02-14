@@ -1,4 +1,5 @@
-from data.dao import Session, WorkType, TShirt
+from store import Session
+from store.dbo import WorkType, TShirt
 
 
 class BaseDS:
